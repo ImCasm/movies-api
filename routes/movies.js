@@ -6,7 +6,6 @@ const {
   movieIdSchema,
   updateMovieSchema,
 } = require('../utils/schemas/movies');
-const joi = require('@hapi/joi');
 const cacheResponse = require('../utils/cacheResponses');
 const {
   FIVE_MINUTES_IN_SECONDS,
@@ -26,7 +25,6 @@ const moviesApi = (app) => {
       const movies = await moviesService.getMovies({
         tags,
       });
-      // throw new Error("Error getting movies");
       res.status(200).json({
         data: movies,
         message: 'Movies listed',
