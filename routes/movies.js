@@ -20,7 +20,10 @@ const moviesApi = (app) => {
 
   router.get('/', async (req, res, next) => {
     cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
-    const { tags } = req.query;
+    const tagsParams = req.query.tags;
+    const tags = tagsParams
+      ? tagsParams.split(',').map((tag) => tag.toLowerCase())
+      : null;
     try {
       const movies = await moviesService.getMovies({
         tags,

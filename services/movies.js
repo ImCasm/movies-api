@@ -18,6 +18,7 @@ class MoviesService {
   }
 
   async createMovie({ movie }) {
+    movie.tags = movie.tags.map((tag) => tag.toLowerCase());
     const createMovieId = this.mongoDB.create(this.collection, movie);
     return createMovieId;
   }
